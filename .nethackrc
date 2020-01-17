@@ -1,0 +1,5 @@
+
+OPTIONS=boulder:0,color
+OPTIONS=autopickup,pickup_types:$?/,pickup_burden:unemcumbered
+OPTIONS=dogname:Percy,horsename:Pebbles
+OPTIONS=DECgraphics:true
