@@ -50,6 +50,10 @@ alias fuck="echo Y\'know, don\'t say swears."
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 
+# because screw limited passes, man.
+# If it takes you more passes than 999 you suck at solitaire
+alias ttysolitaire='ttysolitaire -p 999'
+
 #override standard ANSI colours. 
 # Note to self: should probably have a way to 
 # differentiate between light and dark.
