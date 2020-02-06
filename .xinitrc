@@ -48,6 +48,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 wal -R 
-xbindkeys & picom &
+xbindkeys & picom & redshift &
 exec dwm
 # exec cool-retro-term
