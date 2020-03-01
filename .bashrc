@@ -9,6 +9,7 @@ export EDITOR=$VISUAL
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XDG_CONFIG_HOME="$HOME/.config/"
 export QT_QPA_PLATFORMTHEME="gtk2"
+export GTK_THEME="FlatColor:dark"
 set -o vi
 
 # If not running interactively, don't do anything
