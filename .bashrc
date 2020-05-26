@@ -58,22 +58,6 @@ config config status.showUntrackedFiles no
 # If it takes you more passes than 999 you suck at solitaire
 alias ttysolitaire='ttysolitaire -p 999'
 
-#override standard ANSI colours. 
-# Note to self: should probably have a way to 
-# differentiate between light and dark.
-
-# if st, don't set background, so as to not conflict with alpha.
-# if [ $TERM = 'st-256colors' ]; then
-# 	export BASE16_SHELL_SET_BACKGROUND=false
-# fi
-# 
-# export BASE16_SHELL_SET_BACKGROUND=false
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#         eval "$("$BASE16_SHELL/profile_helper.sh")"
-# 
-
 # Run stuff
 pfetch
 
