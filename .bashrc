@@ -30,6 +30,9 @@ PS1='\A \[\e[0;31m\][\[\e[0;93m\]\u\[\e[m\]@\[\e[0;94m\]\h\[\e[m\] \[\e[0;96m\]\
 # Import wal colours
 . "${HOME}/.cache/wal/colors.sh"
 
+# Make info less painful to use
+alias info='info --vi-keys'
+
 # me and my roguelikes
 alias angband='angband -mgcu'
 
