@@ -1,0 +1,109 @@
+#!/bin/bash
+
+battery() {
+    for battery in /sys/class/power_supply/BAT?
+    do
+        capacity=$(cat "$battery"/capacity) || break
+        status=$(sed "s/Not charging//;\
+            s/Charging//;\
+            s/Unknown//;\
+            s/Full//" "$battery"/status)
+
+        if [ $status == "Discharging" ]
+        then
+            if [ $capacity -lt 15 ]
+            then
+                # DANGEROUSLY LOW
+                status=''
+            elif [ $capacity -lt 33 ]
+            then
+                # low
+                status=''
+            elif [ $capacity -lt 66 ]
+            then
+                # medium
+                status=''
+            else
+                # high
+                status=''
+            fi
+        fi
+        if [ $capacity -gt 100 ]
+        then
+            capacity=100
+        fi
+        printf "%s%s%%" $status $capacity
+    done
+}
+
+wifi() {
+    case "$(cat /sys/class/net/w*/operstate 2> /dev/null)" in
+        down) quality='' ;;
+        up) quality="$(awk '/^\s*w/ { printf "%i", ($3 * 100 / 70) }'\
+            /proc/net/wireless)" 
+        if [ $quality -lt 33 ]
+        then
+            # low strength
+            quality=''$quality'%'
+        elif [ $quality -lt 66 ]
+        then
+            # med strength
+            quality=''$quality'%'
+        elif [ $quality -lt 101 ]
+        then
+            # high strength
+            quality=''$quality'%'
+        fi ;;
+    esac
+    printf "%s" $quality
+}
+
+volume() {
+    vol=$(pamixer --get-volume)
+    mute=$(pamixer --get-mute)
+
+    if [ $mute == 'true' ]
+    then
+        icon=''
+    elif [ $vol -lt 5 ]
+    then
+        icon=''
+    elif [ $vol -lt 33 ]
+    then
+        icon=''
+    elif [ $vol -lt 66 ]
+    then
+        icon=''
+    elif [ $vol -lt 101 ]
+    then
+        icon=''
+    else
+        icon=''
+    fi
+
+    printf "%s%s%%" "$icon" "$vol"
+}
+
+datetime() {
+    date +"%a %x %I:%M%p"
+}
+
+memory() {
+    free | awk '($1 == "Mem:"){printf "%.1f%", $7/$2*100}'
+}
+
+mpd() {
+    mpc | awk 'NR == 1 { song = $0 }\
+        NR == 2 { status = $1 }\
+        END {\
+            if (status) {\
+                status = (status == "[playing]")?"":"";\
+                printf "%s%s", status, song; }\
+            else print "No Track"}'
+}
+
+while true
+do
+    xsetroot -name "$(wifi) $(battery) $(datetime);$(volume) $(memory) $(mpd)"
+    sleep 1s
+done
