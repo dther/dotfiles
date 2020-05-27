@@ -51,4 +51,3 @@ wal -Rst
 xbindkeys &
 picom &
 exec dwm
-# exec cool-retro-term
