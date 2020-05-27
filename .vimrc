@@ -60,7 +60,15 @@ noremap <Left> :echo "Use HJKL!"<CR>
 noremap <Right> :echo "Use HJKL!"<CR>
 
 " add a warning when you're over 80 lines
-" TODO: make this toggleable
 highlight ColorColumn ctermbg=blue
-set colorcolumn=80
+
+:function ToggleColorColumn()
+:   if &colorcolumn != 80
+:       setlocal colorcolumn=80
+:   else
+:       setlocal colorcolumn=0
+:   endif
+:endfunction
+
+noremap <leader>cc :call ToggleColorColumn()<CR>
 " call matchadd('ColorColumn','\%81v',80)
