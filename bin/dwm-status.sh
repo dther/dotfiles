@@ -5,7 +5,7 @@ battery() {
     do
         capacity=$(cat "$battery"/capacity) || break
         status=$(sed "s/Not charging//;\
-            s/Charging//;\
+            s/Charging//;\
             s/Unknown//;\
             s/Full//" "$battery"/status)
 
@@ -14,11 +14,11 @@ battery() {
             if [ $capacity -lt 15 ]
             then
                 # DANGEROUSLY LOW
-                status=''
+                status=''
             elif [ $capacity -lt 33 ]
             then
                 # low
-                status=''
+                status=''
             elif [ $capacity -lt 66 ]
             then
                 # medium
