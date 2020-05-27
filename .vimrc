@@ -54,10 +54,10 @@ set relativenumber
 set number
 
 " unbind arrowkeys to encourage good practice
-map <Up> :echo "Use HJKL!"<CR>
-map <Down> :echo "Use HJKL!"<CR>
-map <Left> :echo "Use HJKL!"<CR>
-map <Right> :echo "Use HJKL!"<CR>
+noremap <Up> :echo "Use HJKL!"<CR>
+noremap <Down> :echo "Use HJKL!"<CR>
+noremap <Left> :echo "Use HJKL!"<CR>
+noremap <Right> :echo "Use HJKL!"<CR>
 
 " add a warning when you're over 80 lines
 " TODO: make this toggleable
