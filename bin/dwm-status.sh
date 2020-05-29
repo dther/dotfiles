@@ -11,15 +11,15 @@ battery() {
 
         if [ $status == "Discharging" ]
         then
-            if [ $capacity -lt 15 ]
+            if [ $capacity -lt 25 ]
             then
                 # DANGEROUSLY LOW
                 status=''
-            elif [ $capacity -lt 33 ]
+            elif [ $capacity -lt 55 ]
             then
                 # low
                 status=''
-            elif [ $capacity -lt 66 ]
+            elif [ $capacity -lt 75 ]
             then
                 # medium
                 status=''
