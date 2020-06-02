@@ -60,4 +60,4 @@ alias ttysolitaire='ttysolitaire -p 999'
 
 # Run stuff
 pfetch
-
+when --future=1 --past=0
