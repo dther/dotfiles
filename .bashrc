@@ -36,9 +36,6 @@ alias info='info --vi-keys'
 # me and my roguelikes
 alias angband='angband -mgcu'
 
-# make dmenu always the right colour
-alias dmenu='dmenu -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"'
-
 alias logisim-evolution='logisim-evolution -analyze'
 
 # suckless thefuck replacement
