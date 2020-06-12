@@ -48,8 +48,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 wal -R
+dunst &
+mpd &
 thinkpad-touchpad off &
 xbindkeys &
 unclutter &
 picom &
-exec dwm
+exec dbus-launch --sh-syntax --exit-with-session dwm
