@@ -102,8 +102,13 @@ mpd() {
             else print "No Track"}'
 }
 
+packages() {
+    [ -f ~/tmp/checkupdates.current ] || cache-updates.sh
+    printf "$(wc -l ~/tmp/checkupdates.current | cut -d' ' -f1)"
+}
+
 while true
 do
-    xsetroot -name "$(wifi) $(battery) $(datetime);$(volume) $(memory) $(mpd)"
+    xsetroot -name "$(packages) $(wifi) $(battery) $(datetime);$(volume) $(memory) $(mpd)"
     sleep 1s
 done
