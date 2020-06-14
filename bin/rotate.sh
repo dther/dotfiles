@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 #get colors
+# shellcheck source=/home/dther/.cache/wal/colors.sh
 . ~/.cache/wal/colors.sh
 
 # color scheme
@@ -14,4 +15,4 @@ selection=$(printf "normal\\nflip\\nleft\\nright" |
     dmenu -sf "$sf" -sb "$sb" -nf "$nf" -nb "$nb" -fn "$fn" -l 10 -c -p "Rotate Screen:") ||
     exit 1 # do nothing if escape
 
-thinkpad-rotate $selection --force-direction
+thinkpad-rotate "$selection" --force-direction

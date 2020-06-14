@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 battery() {
     for battery in /sys/class/power_supply/BAT?
@@ -9,17 +9,17 @@ battery() {
             s/Unknown//;\
             s/Full//" "$battery"/status)
 
-        if [ $status == "Discharging" ]
+        if [ "$status" = "Discharging" ]
         then
-            if [ $capacity -lt 25 ]
+            if [ "$capacity" -lt 25 ]
             then
                 # DANGEROUSLY LOW
                 status=''
-            elif [ $capacity -lt 55 ]
+            elif [ "$capacity" -lt 55 ]
             then
                 # low
                 status=''
-            elif [ $capacity -lt 75 ]
+            elif [ "$capacity" -lt 75 ]
             then
                 # medium
                 status=''
@@ -28,7 +28,7 @@ battery() {
                 status=''
             fi
         fi
-        if [ $capacity -gt 100 ]
+        if [ "$capacity" -gt 100 ]
         then
             capacity=100
         fi
@@ -41,40 +41,40 @@ wifi() {
         down) quality='' ;;
         up) quality="$(awk '/^\s*w/ { printf "%i", ($3 * 100 / 70) }'\
             /proc/net/wireless)" 
-        if [ $quality -lt 33 ]
+        if [ "$quality" -lt 33 ]
         then
             # low strength
             quality=''$quality'%'
-        elif [ $quality -lt 66 ]
+        elif [ "$quality" -lt 66 ]
         then
             # med strength
             quality=''$quality'%'
-        elif [ $quality -lt 101 ]
+        elif [ "$quality" -lt 101 ]
         then
             # high strength
             quality=''$quality'%'
         fi ;;
     esac
-    printf "%s" $quality
+    printf "%s" "$quality"
 }
 
 volume() {
     vol=$(pamixer --get-volume)
     mute=$(pamixer --get-mute)
 
-    if [ $mute == 'true' ]
+    if [ "$mute" = 'true' ]
     then
         icon=''
-    elif [ $vol -lt 5 ]
+    elif [ "$vol" -lt 5 ]
     then
         icon=''
-    elif [ $vol -lt 33 ]
+    elif [ "$vol" -lt 33 ]
     then
         icon=''
-    elif [ $vol -lt 66 ]
+    elif [ "$vol" -lt 66 ]
     then
         icon=''
-    elif [ $vol -lt 101 ]
+    elif [ "$vol" -lt 101 ]
     then
         icon=''
     else
@@ -93,18 +93,19 @@ memory() {
 }
 
 mpd() {
-    mpc | awk 'NR == 1 { song = $0 }\
-        NR == 2 { status = $1 }\
-        END {\
-            if (status) {\
-                status = (status == "[playing]")?"":"";\
-                printf "%s%s", status, song; }\
+    mpc | awk 'NR == 1 { song = $0 }
+        NR == 2 { status = $1 }
+        END {
+            if (status) {
+                status = (status == "[playing]")?"":"";
+                printf "%s%s", status, song; }
             else print "No Track"}'
 }
 
 packages() {
     [ -f ~/tmp/checkupdates.current ] || cache-updates.sh
-    printf "$(wc -l ~/tmp/checkupdates.current | cut -d' ' -f1)"
+    upgrades=$(wc -l ~/tmp/checkupdates.current | cut -d' ' -f1)
+    printf "%s" "$upgrades"
 }
 
 while true
