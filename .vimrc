@@ -15,15 +15,16 @@ set shiftwidth=4
 set tabstop=4
 set scrolloff=1
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+set incsearch
 
 set spelllang=en
 
+" TODO: make this work in tmux!
 let &t_SI = "\e[6 q"
 let &t_SR = "\e[4 q"
 let &t_EI = "\e[2 q"
 
-" another file, where they're 'hidden'. In more technical terms, you can
-" re-use the same window while having an unsaved 'hidden' buffer.
+" Allow opening new files without being forced to save
 set hidden 
 
 " command line completion, + show partial commands
@@ -32,6 +33,9 @@ set showcmd
 
 " highlight search
 set hlsearch
+
+"remove highlights
+noremap <leader>hl :nohlsearch<CR>
 
 " BACKSPACE OVER EVERYTHING, FREEEDOOOOOOM
 set backspace=indent,eol,start
@@ -68,7 +72,30 @@ highlight ColorColumn ctermbg=blue
 :   else
 :       setlocal colorcolumn=0
 :   endif
+:   echo "Column Toggled."
 :endfunction
 
 noremap <leader>cc :call ToggleColorColumn()<CR>
-" call matchadd('ColorColumn','\%81v',80)
+
+" vimwiki replacement!
+nnoremap <leader>nn :e ~/docs/notes/index.md<CR>
+" TODO: make a function that gets the word under cursor and use that as title
+nnoremap <leader>n<leader>n :e ~/docs/notes/
+nnoremap <leader>n<leader>i :r!ls ~/docs/notes/<CR>
+
+nnoremap <leader>dd :e ~/docs/diary/index.md<CR>
+nnoremap <leader>d<leader>d :e ~/docs/diary/`date +\%Y-\%m-\%d`.md<CR>
+nnoremap <leader>d<leader>i :r!ls ~/docs/diary/<CR>
+
+" open todo.txt file
+nnoremap <leader>td :e ~/docs/todo/todo.txt<CR>
+
+" PLUGIN STUFF
+
+" Prerequisites: goyo.vim and limelight.vim
+noremap <leader>G :Goyo<CR>
+autocmd! User GoyoEnter Limelight | set lbr
+autocmd! User GoyoLeave Limelight! | set lbr!
+autocmd! User GoyoLeave set background=dark
+noremap <leader>l :Limelight!!<CR>
+let g:limelight_conceal_ctermfg = 'DarkGrey'
