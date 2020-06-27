@@ -60,6 +60,8 @@ alias ttysolitaire='ttysolitaire --no-background-color -p 999'
 # terminal aesthetic B-)
 alias angband='angband -mgcu'
 
+alias cataclysm="cataclysm --configdir $XDG_CONFIG_HOME/cataclysm-dda"
+
 # todo.sh alias
 alias todo="todo.sh -tc"
 
