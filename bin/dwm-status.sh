@@ -15,6 +15,7 @@ battery() {
             then
                 # DANGEROUSLY LOW
                 status=''
+                notify-send "BATTERY LOW" "Get a charge, kid!!!" -u critical
             elif [ "$capacity" -lt 55 ]
             then
                 # low
@@ -32,7 +33,7 @@ battery() {
         then
             capacity=100
         fi
-        printf "%s%s%%" $status $capacity
+        printf "%s%s%%" "$status" "$capacity"
     done
 }
 
