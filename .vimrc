@@ -21,11 +21,12 @@ set spelllang=en
 
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-else
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
+elseif exists('$DISPLAY')
     let &t_SI = "\e[5 q"
-    let &t_EI = "\e[2 q"
+    let &t_EI = "\e[1 q"
 endif
+" TODO: Figure out how to make this work in the tty!!!
 
 " Allow opening new files without being forced to save
 set hidden 
