@@ -63,10 +63,10 @@ alias angband='angband -mgcu'
 alias cataclysm="cataclysm --configdir $XDG_CONFIG_HOME/cataclysm-dda"
 
 # todo.sh alias
-alias todo="todo.sh -tc"
+alias td="todo.sh -tc"
 
 # Run stuff
 pfetch
 when --future=1 --past=0
 printf "\n"
-todo list
+td ls
