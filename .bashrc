@@ -18,7 +18,8 @@ export GTK_THEME="FlatColor:dark"
 [[ $- != *i* ]] && return
 
 # Check if running in terminal emulator - if it is, then use different .inputrc
-if [ !$DISPLAY ]; then
+if [ ! $DISPLAY ] 
+then
     export INPUTRC='~/.inputrc_tty'
 else
     # A more tmux friendly inputrc
