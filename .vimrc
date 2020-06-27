@@ -19,13 +19,19 @@ set incsearch
 
 set spelllang=en
 
-" TODO: make this work in tmux!
-let &t_SI = "\e[6 q"
-let &t_SR = "\e[4 q"
-let &t_EI = "\e[2 q"
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+else
+    let &t_SI = "\e[5 q"
+    let &t_EI = "\e[2 q"
+endif
 
 " Allow opening new files without being forced to save
 set hidden 
+
+" basically fuzzy finder
+set path+=**
 
 " command line completion, + show partial commands
 set wildmenu 
@@ -63,6 +69,10 @@ noremap <Down> :echo "Use HJKL!"<CR>
 noremap <Left> :echo "Use HJKL!"<CR>
 noremap <Right> :echo "Use HJKL!"<CR>
 
+" netrw stuffs
+let g:netrw_banner=0    " NO BANNER
+let g:netrw_liststyle=3 " tree mode?
+
 " add a warning when you're over 80 lines
 highlight ColorColumn ctermbg=blue
 
@@ -79,8 +89,7 @@ noremap <leader>cc :call ToggleColorColumn()<CR>
 
 " vimwiki replacement!
 nnoremap <leader>nn :e ~/docs/notes/index.md<CR>
-" TODO: make a function that gets the word under cursor and use that as title
-nnoremap <leader>n<leader>n :e ~/docs/notes/
+nnoremap <leader>n<leader>n :execute "e" expand("~/docs/notes/<cWORD>")<CR>
 nnoremap <leader>n<leader>i :r!ls ~/docs/notes/<CR>
 
 nnoremap <leader>dd :e ~/docs/diary/index.md<CR>
@@ -89,6 +98,10 @@ nnoremap <leader>d<leader>i :r!ls ~/docs/diary/<CR>
 
 " open todo.txt file
 nnoremap <leader>td :e ~/docs/todo/todo.txt<CR>
+
+" super simple snippet system
+inoremap <leader>html <ESC>:r ~/.vim/snippets/snip.html<CR> /<++><CR>ca<
+inoremap <leader><leader> <leader>
 
 " PLUGIN STUFF
 
