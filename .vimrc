@@ -9,7 +9,7 @@ syntax on
 " some stuff im trying out
 set background=dark
 set smarttab
-set expandtab
+"set expandtab
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
@@ -20,11 +20,11 @@ set incsearch
 set spelllang=en
 
 if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
+	let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+	let &t_EI = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
 elseif exists('$DISPLAY')
-    let &t_SI = "\e[5 q"
-    let &t_EI = "\e[1 q"
+	let &t_SI = "\e[5 q"
+	let &t_EI = "\e[1 q"
 endif
 " TODO: Figure out how to make this work in the tty!!!
 
@@ -71,19 +71,19 @@ noremap <Left> :echo "Use HJKL!"<CR>
 noremap <Right> :echo "Use HJKL!"<CR>
 
 " netrw stuffs
-let g:netrw_banner=0    " NO BANNER
+let g:netrw_banner=0	" NO BANNER
 let g:netrw_liststyle=3 " tree mode?
 
 " add a warning when you're over 80 lines
 highlight ColorColumn ctermbg=blue
 
 :function ToggleColorColumn()
-:   if &colorcolumn != 80
-:       setlocal colorcolumn=80
-:   else
-:       setlocal colorcolumn=0
-:   endif
-:   echo "Column Toggled."
+:	if &colorcolumn != 80
+:		setlocal colorcolumn=80
+:	else
+:		setlocal colorcolumn=0
+:	endif
+:	echo "Column Toggled."
 :endfunction
 
 noremap <leader>cc :call ToggleColorColumn()<CR>
