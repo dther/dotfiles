@@ -109,8 +109,14 @@ packages() {
     printf "%s" "$upgrades"
 }
 
+email() {
+	unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/* -type f | wc -l 2>/dev/null)"
+	pidof mbsync >/dev/null 2>&1 && sync=""
+	[ "$unread" = "0" ] && printf "%s" "$sync" || printf "%s%s" "$unread" "$sync"
+}
+
 while true
 do
-    xsetroot -name "$(packages) $(wifi) $(battery) $(datetime);$(volume) $(memory) $(mpd)"
+	xsetroot -name "$(packages) $(wifi) $(battery) $(datetime);$(volume) $(memory) $(email) $(mpd)"
     sleep 1s
 done
