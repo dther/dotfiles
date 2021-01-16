@@ -2,8 +2,8 @@
 # ~/.bash_profile
 #
 
-# set path
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+# source profile if it exists
+[[ -f ~/.profile ]] && . ~/.profile
 
 # do something about java being awful
 export AWT_TOOLKIT=MToolkit
