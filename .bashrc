@@ -18,9 +18,11 @@ export GTK_THEME="FlatColor:dark"
 [[ $- != *i* ]] && return
 
 # Check if running in terminal emulator - if it is, then use different .inputrc
+# Also, set $BROWSER to an appropriate browser.
 if [ ! $DISPLAY ] 
 then
     export INPUTRC='~/.inputrc_tty'
+    export BROWSER='lynx'
 else
     # A more tmux friendly inputrc
     export INPUTRC='~/.inputrc'
