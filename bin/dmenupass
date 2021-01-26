@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# (c) Luke Smith <luke@lukesmith.xyz>, distributed under the GPL
+
+# This script is the SUDO_ASKPASS variable, meaning that it will be used as a
+# password prompt if needed.
+
+dmenu -P -p "$1" <&- && echo
