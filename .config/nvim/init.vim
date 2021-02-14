@@ -9,13 +9,16 @@ syntax on
 " some stuff im trying out
 set background=dark
 set smarttab
-"set expandtab
-set softtabstop=4
+set expandtab
+" set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set scrolloff=1
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 set incsearch
+set t_Co=256
+set cursorline
+set inccommand=nosplit
 
 set spelllang=en
 
@@ -32,7 +35,7 @@ endif
 set hidden 
 
 " basically fuzzy finder
-set path+=**
+" set path+=**
 
 " command line completion, + show partial commands
 set wildmenu 
@@ -40,9 +43,6 @@ set showcmd
 
 " highlight search
 set hlsearch
-
-"remove highlights
-noremap <leader>hl :nohlsearch<CR>
 
 " BACKSPACE OVER EVERYTHING, FREEEDOOOOOOM
 set backspace=indent,eol,start
@@ -61,20 +61,14 @@ set ruler
 set laststatus=2
 
 " Show relative line numbers on the side
-set relativenumber
+" set relativenumber
 set number
 
-" unbind arrowkeys to encourage good practice
-noremap <Up> :echo "Use HJKL!"<CR>
-noremap <Down> :echo "Use HJKL!"<CR>
-noremap <Left> :echo "Use HJKL!"<CR>
-noremap <Right> :echo "Use HJKL!"<CR>
-
 " netrw stuffs
-let g:netrw_banner=0	" NO BANNER
+"let g:netrw_banner=0	" NO BANNER
 let g:netrw_liststyle=3 " tree mode?
 
-" add a warning when you're over 80 lines
+" add a warning when you're at 80 characters
 highlight ColorColumn ctermbg=blue
 
 :function ToggleColorColumn()
@@ -89,12 +83,15 @@ highlight ColorColumn ctermbg=blue
 noremap <leader>cc :call ToggleColorColumn()<CR>
 
 " vimwiki replacement!
-nnoremap <leader>nn :e ~/docs/notes/index.md<CR>
-nnoremap <leader>n<leader>n :execute "e" expand("~/docs/notes/<cWORD>")<CR>
-nnoremap <leader>n<leader>i :r!ls ~/docs/notes/<CR>
+" nnoremap <leader>nn :e ~/docs/notes/index.md<CR>
+" nnoremap <leader>n<leader>n :execute "e" expand("~/docs/notes/<cfile>")<CR>
+" nnoremap <leader>n<leader>i :r!ls ~/docs/notes/<CR>
+" Will affect jump list binds. Consider using <C-i> or making this file
+" specific...
+" nnoremap <Tab> /[A-Za-z0-9-]*.md<CR>
 
-nnoremap <leader>dd :e ~/docs/diary/index.md<CR>
-nnoremap <leader>d<leader>d :e ~/docs/diary/`date +\%Y-\%m-\%d`.md<CR>
+nnoremap <leader>dd :e ~/docs/diary/<CR>
+nnoremap <leader>d<leader>d :Goyo<CR>:e ~/docs/diary/`date +\%Y-\%m-\%d`.wiki.md<CR>
 nnoremap <leader>d<leader>i :r!ls ~/docs/diary/<CR>
 
 " open todo.txt file
@@ -103,6 +100,9 @@ nnoremap <leader>td :e ~/docs/todo/todo.txt<CR>
 " super simple snippet system
 inoremap <leader>html <ESC>:r ~/.vim/snippets/snip.html<CR> /<++><CR>ca<
 inoremap <leader><leader> <leader>
+
+" highlight tabs and trailing whitespace
+nnoremap <leader><space> /	\\|\s$<CR>
 
 " PLUGIN STUFF
 
@@ -113,3 +113,13 @@ autocmd! User GoyoLeave Limelight! | set lbr!
 autocmd! User GoyoLeave set background=dark
 noremap <leader>l :Limelight!!<CR>
 let g:limelight_conceal_ctermfg = 'DarkGrey'
+
+" Prerequisites: Jellybeans.vim
+let g:jellybeans_use_lowcolor_black = 1
+let g:jellybeans_overrides = {
+            \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+            \}
+    if has('termguicolors') && &termguicolors
+            let g:jellybeans_overrides['background']['guibg'] = 'none'
+        endif
+colorscheme jellybeans
