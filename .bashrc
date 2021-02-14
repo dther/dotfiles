@@ -25,11 +25,9 @@ alias crawl="crawl -dir $XDG_CONFIG_HOME/crawl"
 [[ $- != *i* ]] && return
 
 # Check if running in terminal emulator - if it is, then use different .inputrc
-# Also, set $BROWSER to an appropriate browser.
-if [ ! $DISPLAY ] 
+if [[ ! $DISPLAY ]]
 then
     export INPUTRC='~/.inputrc_tty'
-    export BROWSER='lynx'
 else
     # A more tmux friendly inputrc
     export INPUTRC='~/.inputrc'
@@ -69,7 +67,6 @@ alias ttysolitaire='ttysolitaire --no-background-color -p 999'
 # terminal aesthetic B-)
 alias angband='angband -mgcu'
 
-alias cataclysm="cataclysm --configdir $XDG_CONFIG_HOME/cataclysm-dda"
 
 # todo.sh alias
 alias td="todo.sh -tc"
