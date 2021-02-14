@@ -10,6 +10,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export XDG_CONFIG_HOME="$HOME/.config/"
 export QT_QPA_PLATFORMTHEME="gtk2"
 export GTK_THEME="FlatColor:dark"
+export LITEWIKI="~/docs/wiki"
+
+# Home clean up.
+# TODO: MOVE THIS TO ANOTHER FILE. IN $XDG_CONFIG_HOME, IDEALLY.
+alias cataclysm="cataclysm --configdir $XDG_CONFIG_HOME/cataclysm-dda"
+alias cmines="cmines -s $XDG_CONFIG_HOME/cminesrc"
+alias crawl="crawl -dir $XDG_CONFIG_HOME/crawl"
 
 # Import wal colours
 . "${HOME}/.cache/wal/colors.sh"
