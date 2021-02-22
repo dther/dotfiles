@@ -10,31 +10,22 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export XDG_CONFIG_HOME="$HOME/.config/"
 export QT_QPA_PLATFORMTHEME="gtk2"
 export GTK_THEME="FlatColor:dark"
-export LITEWIKI="~/docs/wiki"
+export LITEWIKI="$HOME/docs/wiki"
+export INPUTRC='~/.inputrc'
 
 # Home clean up.
 # TODO: MOVE THIS TO ANOTHER FILE. IN $XDG_CONFIG_HOME, IDEALLY.
-alias cataclysm="cataclysm --configdir $XDG_CONFIG_HOME/cataclysm-dda"
+alias cataclysm="cataclysm --configdir $XDG_CONFIG_HOME/.config/cataclysm-dda"
 alias cmines="cmines -s $XDG_CONFIG_HOME/cminesrc"
 alias crawl="crawl -dir $XDG_CONFIG_HOME/crawl"
-
-# Import wal colours
-. "${HOME}/.cache/wal/colors.sh"
+alias abook="abook -C $XDG_CONFIG_HOME/abook/abookrc --datafile $XDG_DATA_HOME/abook/addressbook"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Check if running in terminal emulator - if it is, then use different .inputrc
-if [[ ! $DISPLAY ]]
-then
-    export INPUTRC='~/.inputrc_tty'
-else
-    # A more tmux friendly inputrc
-    export INPUTRC='~/.inputrc'
-fi
 
 # Prompt
-PS1='\A \[\e[0;31m\][\[\e[0;93m\]\u\[\e[m\]@\[\e[0;94m\]\h\[\e[m\] \[\e[0;96m\]\w\[\e[0;31m\]]\[\e[m\]\$ '
+PS1='\A \[\e[0;31m\][\[\e[0;33m\]\u\[\e[m\]@\[\e[0;34m\]\h\[\e[m\] \[\e[0;96m\]\w\[\e[0;31m\]]\[\e[m\]\$ '
 
 ### Useful Aliases ###
 
@@ -70,9 +61,18 @@ alias angband='angband -mgcu'
 
 # todo.sh alias
 alias td="todo.sh -tc"
+alias todo="td"
+
+alias backlog="td -d ~/.todo/backlogconf"
+alias bibleplan="td -aTd ~/.todo/bible"
+
+# imagine using nano
+alias nano="echo How about naNO && sleep 0.5 && vim"
+
+# avoid rm, it's easy to make horrible mistakes
+alias rm="echo You probably want \'trash\'. && rm -vi"
 
 # Run stuff
 pfetch
-when --future=1 --past=0
 printf "\n"
 td ls
