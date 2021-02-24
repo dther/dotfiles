@@ -22,20 +22,8 @@ set inccommand=nosplit
 
 set spelllang=en
 
-if exists('$TMUX')
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
-elseif exists('$DISPLAY')
-	let &t_SI = "\e[5 q"
-	let &t_EI = "\e[1 q"
-endif
-" TODO: Figure out how to make this work in the tty!!!
-
 " Allow opening new files without being forced to save
 set hidden 
-
-" basically fuzzy finder
-" set path+=**
 
 " command line completion, + show partial commands
 set wildmenu 
@@ -60,13 +48,8 @@ set ruler
 " Always display the status line, which tells you what files are open
 set laststatus=2
 
-" Show relative line numbers on the side
-" set relativenumber
+" Show line numbers on the side
 set number
-
-" netrw stuffs
-"let g:netrw_banner=0	" NO BANNER
-let g:netrw_liststyle=3 " tree mode?
 
 " add a warning when you're at 80 characters
 highlight ColorColumn ctermbg=blue
@@ -82,14 +65,7 @@ highlight ColorColumn ctermbg=blue
 
 noremap <leader>cc :call ToggleColorColumn()<CR>
 
-" vimwiki replacement!
-" nnoremap <leader>nn :e ~/docs/notes/index.md<CR>
-" nnoremap <leader>n<leader>n :execute "e" expand("~/docs/notes/<cfile>")<CR>
-" nnoremap <leader>n<leader>i :r!ls ~/docs/notes/<CR>
-" Will affect jump list binds. Consider using <C-i> or making this file
-" specific...
-" nnoremap <Tab> /[A-Za-z0-9-]*.md<CR>
-
+" Journalling
 nnoremap <leader>dd :e ~/docs/diary/<CR>
 nnoremap <leader>d<leader>d :Goyo<CR>:e ~/docs/diary/`date +\%Y-\%m-\%d`.wiki.md<CR>
 nnoremap <leader>d<leader>i :r!ls ~/docs/diary/<CR>
@@ -97,24 +73,15 @@ nnoremap <leader>d<leader>i :r!ls ~/docs/diary/<CR>
 " open todo.txt file
 nnoremap <leader>td :e ~/docs/todo/todo.txt<CR>
 
-" super simple snippet system
-inoremap <leader>html <ESC>:r ~/.vim/snippets/snip.html<CR> /<++><CR>ca<
-inoremap <leader><leader> <leader>
-
 " highlight tabs and trailing whitespace
 nnoremap <leader><space> /	\\|\s$<CR>
 
-" PLUGIN STUFF
+" rainbow csv settings
+let g:rb_storage_dir = $XDG_CACHE_HOME . '/rainbow_csv'
+let g:table_names_settings = $XDG_CACHE_HOME . '/rbql_table_names'
+let g:rainbow_table_index = $XDG_CACHE_HOME . '/rbql_table_index'
 
-" Prerequisites: goyo.vim and limelight.vim
-noremap <leader>G :Goyo<CR>
-autocmd! User GoyoEnter Limelight | set lbr
-autocmd! User GoyoLeave Limelight! | set lbr!
-autocmd! User GoyoLeave set background=dark
-noremap <leader>l :Limelight!!<CR>
-let g:limelight_conceal_ctermfg = 'DarkGrey'
-
-" Prerequisites: Jellybeans.vim
+" Jellybeans.vim personal settings
 let g:jellybeans_use_lowcolor_black = 1
 let g:jellybeans_overrides = {
             \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
