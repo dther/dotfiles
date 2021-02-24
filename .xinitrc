@@ -32,4 +32,10 @@ xbindkeys &
 unclutter &
 picom &
 xsettingsd &
+# Just assume we're in brisbane.
+redshift -l "-27:153" &
+keynav daemonize &
+dwmblocks &
+pipewire &
+xss-lock slock.sh &
 exec ssh-agent dbus-launch --sh-syntax --exit-with-session dwm
