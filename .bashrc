@@ -22,9 +22,18 @@ alias abook="abook -C $XDG_CONFIG_HOME/abook/abookrc --datafile $XDG_DATA_HOME/a
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
 # Prompt
-PS1='\A \[\e[0;31m\][\[\e[0;33m\]\u\[\e[m\]@\[\e[0;34m\]\h\[\e[m\] \[\e[0;96m\]\w\[\e[0;31m\]]\[\e[m\]\$ '
+#PS1='\A \[\e[0;31m\][\[\e[0;33m\]\u\[\e[m\]@\[\e[0;34m\]\h\[\e[m\] \[\e[0;96m\]\w\[\e[0;31m\]]\[\e[m\]\$ '
+
+# Almost above, but a million times more readable.
+# Also more portable, can be used in mksh just by removing the
+# '\[ \]'s needed by bash.
+promptred="\[$(tput setaf 1)\]"
+promptblue="\[$(tput setaf 4)\]"
+promptyellow="\[$(tput setaf 3)\]"
+promptcyan="\[$(tput setaf 6)\]"
+promptclear="\[$(tput sgr0)\]"
+PS1="\$(date +%H%M) $promptclear""$promptred"'['"$promptyellow""\$USER""$promptclear"'@'"$promptblue""${HOSTNAME:-$(hostname)}""$promptclear"':'"$promptcyan""\${PWD##/home/dther/}""$promptred"']'"$promptclear"'$ '
 
 ### Useful Aliases ###
 
