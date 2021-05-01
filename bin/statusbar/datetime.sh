@@ -2,4 +2,4 @@
 
 # Date/Time module
 
-date +"%a %x %I:%M%p"
+date +"%a %x %H:%M"
