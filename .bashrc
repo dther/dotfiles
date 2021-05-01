@@ -75,3 +75,4 @@ alias rm="echo You probably want \'trash\'. && rm -vi"
 pfetch
 printf "\n"
 td ls
+colorwhen.sh --future=5
