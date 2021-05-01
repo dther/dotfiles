@@ -10,7 +10,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export XDG_CONFIG_HOME="$HOME/.config/"
 export QT_QPA_PLATFORMTHEME="gtk2"
 export GTK_THEME="FlatColor:dark"
-export LITEWIKI="$HOME/docs/wiki"
 export INPUTRC='~/.inputrc'
 
 # Home clean up.
