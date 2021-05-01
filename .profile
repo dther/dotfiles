@@ -2,15 +2,19 @@
 # ~/.profile
 #
 
+## SOURCE SYSTEM PROFILE ##
+. /etc/profile
+
 ## PATH ##
 export PATH="$PATH:$(du "$HOME/bin" "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 
 ## DEFAULT PROGRAMS ##
 export EDITOR="vim"
 export TERMINAL="st"
-export BROWSER="brave"
+export BROWSER="qutebrowser"
 export READER="zathura"
 export SUDO_ASKPASS="$HOME/bin/dmenupass"
+export NOIXDIR="$HOME/docs/notes"
 
 ## HOME CLEAN UP ##
 # Most of this was taken from LukeSmithxyz/voidrice.git.
@@ -38,6 +42,7 @@ export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
+
 export SOKSAVEDIR="${XDG_CONFIG_HOME:-$HOME/.config}/csokoban"
 export BLKSAVEDIR="${XDG_CONFIG_HOME:-$HOME/.config}/cblocks"
 export NETHACKOPTIONS="@${XDG_CONFIG_HOME:-$HOME/.config}/nethackrc"
@@ -46,5 +51,7 @@ export NETHACKOPTIONS="@${XDG_CONFIG_HOME:-$HOME/.config}/nethackrc"
 # Java bein broke
 export AWT_TOOLKIT=MToolkit
 
-# source bashrc
-. ~/.bashrc
+# source bashrc?? I use yash now so i'll need to make changes. TODO
+[ "$SHELL" = "/bin/bash" ] && . ~/.bashrc
+# Unnecessary- yash always sources yashrc
+#[ "$SHELL" = "/usr/bin/yash" ] && . ~/.yashrc
