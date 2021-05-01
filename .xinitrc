@@ -36,6 +36,6 @@ xsettingsd &
 redshift -l "-27:153" &
 keynav daemonize &
 dwmblocks &
-pipewire &
+#pipewire &
 xss-lock slock.sh &
 exec ssh-agent dbus-launch --sh-syntax --exit-with-session dwm
