@@ -30,7 +30,8 @@ dunst &
 mpd &
 xbindkeys &
 unclutter &
-picom &
+# TODO: causes game crashes on newest version of X, fix before reenabling -Dther, 2021-07-13
+# picom &
 xsettingsd &
 # Just assume we're in brisbane.
 redshift -l "-27:153" &
