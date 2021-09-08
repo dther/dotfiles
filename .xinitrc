@@ -25,7 +25,7 @@ fi
 
 # start some nice programs
 
-wal -R
+wal -Rst # Finish loading wal *before* everything else
 dunst &
 mpd &
 xbindkeys &
