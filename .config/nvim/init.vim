@@ -67,14 +67,17 @@ noremap <leader>cc :call ToggleColorColumn()<CR>
 
 " Journalling
 nnoremap <leader>dd :e ~/docs/diary/<CR>
-nnoremap <leader>d<leader>d :Goyo<CR>:e ~/docs/diary/`date +\%Y-\%m-\%d`.wiki.md<CR>
-nnoremap <leader>d<leader>i :r!ls ~/docs/diary/<CR>
+nnoremap <leader>d<leader>d :Goyo<CR>:e ~/docs/diary/`date +\%Y-\%m-\%d`.md<CR>
 
 " open todo.txt file
 nnoremap <leader>td :e ~/docs/todo/todo.txt<CR>
 
 " highlight tabs and trailing whitespace
 nnoremap <leader><space> /	\\|\s$<CR>
+
+" Convert to hex using xxd
+nnoremap <leader>hexd :set binary<CR>:%!xxd<CR>:set nobinary<CR>:echo "xxd: Dumped Hex."<CR>
+nnoremap <leader>hexr :%!xxd -r<CR>:set binary<CR>:echo "xxd -r: Reverted to binary."<CR>
 
 " rainbow csv settings
 let g:rb_storage_dir = $XDG_CACHE_HOME . '/rainbow_csv'
@@ -89,4 +92,12 @@ let g:jellybeans_overrides = {
     if has('termguicolors') && &termguicolors
             let g:jellybeans_overrides['background']['guibg'] = 'none'
         endif
-colorscheme jellybeans
+"colorscheme jellybeans
+
+" some frils
+" let g:nofrils_strbackgrounds = 1
+colorscheme somefrils-dark
+
+" Disable todotxt folding. If a todo file needs folding, it's too long.
+" Ughghh. This doesn't work. At all. I just excised the code from it manually.
+let g:Todo_fold_char=v:null
