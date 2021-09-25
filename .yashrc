@@ -42,6 +42,10 @@ alias darn='fudge'
 alias crap='fudge'
 alias fuck="echo Y\'know, don\'t say swears."
 
+# rlwrapping
+# Man, how did I go this long without finding this???
+alias tclsh='rlwrap tclsh'
+
 
 ### Program Specific Aliases ###
 
