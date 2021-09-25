@@ -24,13 +24,19 @@ if [ -f "$usermodmap" ]; then
 fi
 
 # start some nice programs
+# Always bind keys
+xbindkeys &
 
+# EPIC GAMER MODE!!!!! XDXDXD
+[ -n "$GAMERMODE" ] && exec steam
+
+# Only do this if *not* in epic gamer mode :(
 wal -Rst # Finish loading wal *before* everything else
 dunst &
 mpd &
-xbindkeys &
 unclutter &
 # TODO: causes game crashes on newest version of X, fix before reenabling -Dther, 2021-07-13
+# XXX: Only happens on Intel CPUs tho
 # picom &
 xsettingsd &
 # Just assume we're in brisbane.
