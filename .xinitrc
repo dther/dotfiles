@@ -31,7 +31,6 @@ xbindkeys &
 [ -n "$GAMERMODE" ] && exec steam
 
 # Only do this if *not* in epic gamer mode :(
-wal -Rst # Finish loading wal *before* everything else
 dunst &
 mpd &
 unclutter &
@@ -45,4 +44,5 @@ keynav daemonize &
 dwmblocks &
 #pipewire &
 xss-lock slock.sh &
+wal -Rst # Finish loading wal *before* starting dwm
 exec ssh-agent dbus-launch --sh-syntax --exit-with-session dwm
