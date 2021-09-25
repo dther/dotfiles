@@ -53,5 +53,3 @@ export AWT_TOOLKIT=MToolkit
 
 # source bashrc?? I use yash now so i'll need to make changes. TODO
 [ "$SHELL" = "/bin/bash" ] && . ~/.bashrc
-# Unnecessary- yash always sources yashrc
-#[ "$SHELL" = "/usr/bin/yash" ] && . ~/.yashrc
