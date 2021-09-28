@@ -45,6 +45,7 @@ alias fuck="echo Y\'know, don\'t say swears."
 # rlwrapping
 # Man, how did I go this long without finding this???
 alias tclsh='rlwrap tclsh'
+alias todo.sh='rlwrap todo.sh'
 
 
 ### Program Specific Aliases ###
