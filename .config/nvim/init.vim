@@ -94,9 +94,9 @@ let g:jellybeans_overrides = {
         endif
 "colorscheme jellybeans
 
-" some frils
+" some frils (lowfrils)
 " let g:nofrils_strbackgrounds = 1
-colorscheme somefrils-dark
+colorscheme lowfrils-dark
 
 " Disable todotxt folding. If a todo file needs folding, it's too long.
 " Ughghh. This doesn't work. At all. I just excised the code from it manually.
