@@ -12,6 +12,7 @@ export GTK_THEME="FlatColor:dark"
 export INPUTRC='~/.inputrc'
 export ELVISBG="dark"
 export CHROME_EXECUTABLE='brave'
+export TASHK_DIR="$HOME/docs/todo/"
 
 # Home clean up.
 # TODO: MOVE THIS TO ANOTHER FILE. IN $XDG_CONFIG_HOME, IDEALLY.
@@ -19,6 +20,18 @@ alias cataclysm="cataclysm --configdir $XDG_CONFIG_HOME/.config/cataclysm-dda"
 alias cmines="cmines -s $XDG_CONFIG_HOME/cminesrc"
 alias crawl="crawl -dir $XDG_CONFIG_HOME/crawl"
 alias abook="abook -C $XDG_CONFIG_HOME/abook/abookrc --datafile $XDG_DATA_HOME/abook/addressbook"
+
+## bash features that can easily be implemented in sh ##
+
+# Set $COLUMNS and $LINES to the columns and lines.
+# Most but not all nixes implement stty size. Check the manpage if in doubt.
+_resized() {
+  size="$(stty size)"
+  export LINES="${size%% *}"
+  export COLUMNS="${size##* }"
+}
+_resized
+trap _resized SIGWINCH
 
 ## Aliases ##
 
@@ -50,13 +63,15 @@ alias todo.sh='rlwrap todo.sh'
 
 ### Program Specific Aliases ###
 
+# the testing grounds
+alias h='habitctl'
+
 # because screw limited passes, man.
 # If it takes you more passes than 999 you suck at solitaire
 alias ttysolitaire='ttysolitaire --no-background-color -p 999'
 
 # terminal aesthetic B-)
 alias angband='angband -mgcu'
-
 
 # todo.sh alias
 alias td="todo.sh -tc"
@@ -81,13 +96,6 @@ colorwhen.sh --future=5
 
 # enable bash-like extended expansion
 set --brace-expand
-
-# enable recursive pathname expansion
-set --extended-glob
-
-# prevent redirections from overwriting existing files
-# NTS: Don't know if I like this.
-set --no-clobber
 
 # don't implicitly expand non-existent variables to empty strings
 # Hmmm don't know if I like this either
@@ -397,6 +405,7 @@ if [ -e "$1" ] && ! [ -d "$1" ]; then
   file -- "$1"
 fi
 COMMAND_NOT_FOUND_HANDLER=("$COMMAND_NOT_FOUND_HANDLER" '_file_type "$@"')
+
 
 # Custom prompt?
 #promptred="$(tput setaf 1)"
