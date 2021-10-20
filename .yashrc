@@ -88,9 +88,11 @@ alias rm="echo You probably want \'trash\'. && rm -vi"
 
 # Run stuff
 pfetch
-printf "\n"
-td ls
-colorwhen.sh --future=5
+tashk ls -p tashkcolor.sh
+echo "---"
+when --prefilter=m4 --future=5
+echo "---"
+prod
 
 #### From Common Yashrc ####
 
