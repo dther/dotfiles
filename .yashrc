@@ -73,12 +73,12 @@ alias ttysolitaire='ttysolitaire --no-background-color -p 999'
 # terminal aesthetic B-)
 alias angband='angband -mgcu'
 
-# todo.sh alias
-alias td="todo.sh -tc"
-alias todo="td"
-
-alias backlog="td -d ~/.todo/backlogconf"
-alias bibleplan="td -aTd ~/.todo/bible"
+# tashk aliases
+export TASHK_LS_PREFILTER="tashkcolor.sh"
+alias todo="tashk"
+alias waiting="tashk -f waiting.txt"
+alias proj="tashk -f projects.txt"
+alias shelf="tashk -f maybe.txt"
 
 # imagine using nano
 alias nano="echo How about naNO && sleep 0.5 && vim"
