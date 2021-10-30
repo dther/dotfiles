@@ -32,14 +32,15 @@ xbindkeys &
 
 # Only do this if *not* in epic gamer mode :(
 dunst &
-mpd &
+# TODO: make sure mpd only runs if there's not already an mpd session for us
+#mpd &
 unclutter &
-# TODO: causes game crashes on newest version of X, fix before reenabling -Dther, 2021-07-13
+# TODO: picom causes game crashes on newest version of X,
+#       fix before reenabling -Dther, 2021-07-13
 # XXX: Only happens on Intel CPUs tho
 # picom &
 xsettingsd &
-# Just assume we're in brisbane.
-redshift -l "-27:153" &
+redshift &
 keynav daemonize &
 dwmblocks &
 #pipewire &
