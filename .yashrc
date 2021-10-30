@@ -21,18 +21,6 @@ alias cmines="cmines -s $XDG_CONFIG_HOME/cminesrc"
 alias crawl="crawl -dir $XDG_CONFIG_HOME/crawl"
 alias abook="abook -C $XDG_CONFIG_HOME/abook/abookrc --datafile $XDG_DATA_HOME/abook/addressbook"
 
-## bash features that can easily be implemented in sh ##
-
-# Set $COLUMNS and $LINES to the columns and lines.
-# Most but not all nixes implement stty size. Check the manpage if in doubt.
-_resized() {
-  size="$(stty size)"
-  export LINES="${size%% *}"
-  export COLUMNS="${size##* }"
-}
-_resized
-trap _resized SIGWINCH
-
 ## Aliases ##
 
 # system commands
@@ -58,7 +46,7 @@ alias fuck="echo Y\'know, don\'t say swears."
 # rlwrapping
 # Man, how did I go this long without finding this???
 alias tclsh='rlwrap tclsh'
-alias todo.sh='rlwrap todo.sh'
+alias tashk='rlwrap tashk'
 
 
 ### Program Specific Aliases ###
@@ -291,6 +279,7 @@ unset _hc _uc _2c
 PS1='${LOGNAME}@${HOSTNAME%%.*} '$PS1
 
 # find escape sequence to change terminal window title
+# TODO: I don't know if i want this -dther
 case "$TERM" in
   (xterm|xterm[+-]*|gnome|gnome[+-]*|putty|putty[+-]*|cygwin)
     _tsl='\033];' _fsl='\a' ;;
