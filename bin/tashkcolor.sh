@@ -1,1 +1,0 @@
-/home/dther/repos/tashk/tashkcolor.sh
