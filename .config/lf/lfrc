@@ -1,0 +1,51 @@
+# Dther's lfrc
+# (c) 2021 Rudy Dellomas III, no warranty, no evil allowed.
+# Comments on things I feel like I'd forget,
+# but lf has a real nice manpage at lf(1).
+# Assumes that we're running on a UNIX-like system. Bets are off on Windows.
+
+# XXX: REQUIRED PROGRAMS
+# For this to work, you must install:
+#  - trash-cli(1)
+#  - GNU readlink(1)
+#  - BSD file(1)
+#  - preview.sh, which is in my dotfiles repo (~/bin)
+
+# visual settings
+set scrolloff 5
+
+# ALWAYS USE 'sh' for reliable behaviour
+set shell '/bin/sh'
+# exit on error and error on unset variables
+set shellopts '-eu'
+
+# open files using $EDITOR if they're text,
+# otherwise use a file opener...
+# $OPENER is set automatically by lf. (xdg-open on linux)
+# Doesn't call `setsid` if only one file is being opened,
+# to allow the terminal to be swallowed by dwm(1).
+cmd open ${{
+	test -L $f && f=$(readlink -f $f)
+	case $(file --mime-type $f -b) in
+		text/*) $EDITOR $fx;;
+		*)
+			files=$(echo "$fx" | wc -w)
+			[ "$files" -eq 1 ] && $OPENER $f && exit 0
+			for f in $fx; do
+				setsid $OPENER $f > /dev/null 2> /dev/null &
+			done ;;
+	esac
+}}
+
+# use trash-cli to trash shtuff
+cmd trash %trash-put $fx && echo "Trashed $fx"
+cmd trash-restore $trash-restore $PWD
+
+# D to trash files, U to restore them (by list)
+map D trash
+map U trash-restore
+
+# TODO: add vimv or something
+
+# look at me I wrote a previewer
+set previewer preview.sh
