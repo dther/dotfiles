@@ -227,7 +227,23 @@ fi
 : ${ECHO_STYLE:=RAW}
 
 # variables needed for command history
-HISTFILE=$HOME/.local/share/yash_history HISTSIZE=5000
+# FIXME: I find the default command history behaviour annoying, even after
+# months of use.
+# Yash has a strange habit of mangling its own history file when it's used
+# by more than one process.
+# I should change it to:
+#  - be per-process
+#  - clean up after itself (possibly through the use of aliasing exit
+#    or trapping SIGTERM)
+#  - OR have a cronjob that auto cleans up yash_history when it gets too big
+#  - ehhh... but that feels like too much effort...
+#  - Maybe have it do a quick check for processes that aren't running anymore?
+#  - I don't friggin know.
+#HISTDIR=$HOME/.local/share/yash_hist/
+#[ -d "$HISTDIR" ] || mkdir "$HISTDIR"
+HISTFILE=
+
+#HISTFILE=$HOME/.local/share/yash_history HISTSIZE=5000
 # HISTRMDUP makes prediction less accurate
 # HISTRMDUP=500
 
