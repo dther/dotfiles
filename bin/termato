@@ -1,0 +1,45 @@
+#!/bin/sh
+# (c) 2021 Rudy Dellomas III
+
+# pomodoro timer, using termdown and tmux.
+# first arg is the time
+# XXX: Requires
+#  - termdown
+#  - tmux
+
+# Settings + args
+# This should signal a status checker to check $POMOTMP/termato.
+SIG_CMD="pkill -SIGRTMIN+9 dwmblocks"
+POMOTMP=${XDG_RUNTIME_DIR:-"/tmp"}
+# The command used to launch a terminal emulator to watch pomo.
+# Could theoretically use GNU screen, it'd just be a lot more finicky.
+# And attemptattach wouldn't work.
+TMUXCMD='tmux new-session -d -s pomo'
+time=${1:-"20m"} # default 20m
+
+# We are being called IN the 'pomo' session...
+if [ -n "$TMUX" ] && [ "$(tmux display-message -p '#S')" = "pomo" ]; then
+	termdown -o "$POMOTMP/termato" --exec-cmd "$SIG_CMD" "$time"
+	$SIG_CMD
+	exit
+fi
+
+attemptattach() {
+	# Check if we have a timer tmux session running already.
+	tmux has-session -t pomo >&2 2>/dev/null || return 1
+	tmux display-message "Switching to existing 'pomo' session..."
+	[ -n "$TMUX" ] && tmux switch-client -t 'pomo' && return 0
+	tmux attach-session -t 'pomo' && return 0
+	# Race condition: the 'pomo' session has ended in the time taken
+	# trying to attach to it.
+	# This could happen in trying to attach to 'pomo' in its
+	# final few seconds, or if running on a *really slow* computer.
+	echo "Pomodoro timer just ended. Take a break." >&2
+	exit 2
+}
+
+attemptattach && exit
+# recursively call because we want to call $SIG_CMD after termdown finishes
+$TMUXCMD termato "$time"
+attemptattach
+
