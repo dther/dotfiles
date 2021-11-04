@@ -39,7 +39,7 @@ cmd open ${{
 
 # use trash-cli to trash shtuff
 cmd trash %trash-put $fx && echo "Trashed $fx"
-cmd trash-restore $trash-restore $PWD
+cmd trash-restore $trash-restore
 
 # D to trash files, U to restore them (by list)
 map D trash
