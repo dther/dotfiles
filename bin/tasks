@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Open up a tmux session for managing my todo lists, or attach to one if it
+# already exists
+
+# Layout:
+#  - "todo" window: things I want to get done this week or sooner.
+#  - "projects" window: long term goals with multiple tasks involved.
+# Each window consists of:
+#  - A shell (for calling tashk commands
+#  - one pane showing the current contents of the "main" todo list
+#  - Another showing the current contents of a "related" todo list
+
+# XXX requires
+#  - tashk
+#  - tmux
+#  - watch
+
+# almost the same as the one in termato. Could probably generalise.
+attemptattach() {
+	tmux has-session -t tasks >&2 2>/dev/null || return 1
+	tmux display-message "Switching to existing 'tasks' session..."
+	[ -n "$TMUX" ] && tmux switch-client -t 'tasks' && return 0
+	tmux attach-session -t 'tasks' && return 0
+	# Rarely, session may disappear while trying to attach...
+	return 2
+}
+
+attemptattach && exit
+
+# set up todo lists
+tmux new-session -Ads 'tasks' -n 'todo' -c "$TASHK_DIR"
+tmux split-window -t 'tasks:todo' watch -c tashk ls 
+tmux split-window -ht 'tasks:todo' watch -c tashk -f waiting.txt ls 
+tmux select-pane -t 'tasks:todo.0'
+
+# high-level project tracking
+tmux new-window -at 'tasks:todo' -n 'projects' -c "$TASHK_DIR"
+tmux split-window -vt 'tasks:projects' watch -c tashk -f projects.txt ls 
+tmux split-window -ht 'tasks:projects' watch -c tashk -f maybe.txt ls 
+tmux select-pane -t 'tasks:projects.0'
+
+# Start us off in todo
+tmux select-window -t 'tasks:todo'
+attemptattach
