@@ -8,6 +8,7 @@ export EDITOR=$VISUAL
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XDG_CONFIG_HOME="$HOME/.config/"
 export QT_QPA_PLATFORMTHEME="gtk2"
+export QT_STYLE_OVERRIDE="gtk2"
 export GTK_THEME="FlatColor:dark"
 export INPUTRC='~/.inputrc'
 export ELVISBG="dark"
@@ -48,7 +49,6 @@ alias fuck="echo Y\'know, don\'t say swears."
 alias tclsh='rlwrap tclsh'
 alias tashk='rlwrap tashk'
 
-
 ### Program Specific Aliases ###
 
 # the testing grounds
@@ -65,8 +65,8 @@ alias angband='angband -mgcu'
 export TASHK_LS_PREFILTER="tashkcolor.sh"
 alias todo="tashk"
 alias waiting="tashk -f waiting.txt"
-alias proj="tashk -f projects.txt"
-alias shelf="tashk -f maybe.txt"
+alias projects="tashk -f projects.txt"
+alias maybe="tashk -f maybe.txt"
 
 # imagine using nano
 alias nano="echo How about naNO && sleep 0.5 && vim"
