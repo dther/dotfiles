@@ -20,6 +20,7 @@ time=${1:-"20m"} # default 20m
 # We are being called IN the 'pomo' session...
 if [ -n "$TMUX" ] && [ "$(tmux display-message -p '#S')" = "pomo" ]; then
 	termdown -o "$POMOTMP/termato" --exec-cmd "$SIG_CMD" "$time"
+	notify-send -u critical "termato" "Timer for $time completed."
 	$SIG_CMD
 	exit
 fi
@@ -40,6 +41,8 @@ attemptattach() {
 
 attemptattach && exit
 # recursively call because we want to call $SIG_CMD after termdown finishes
+notify-send -u low "termato" "Timer for $time started."
 $TMUXCMD termato "$time"
-attemptattach
+printf "%s\n" "Timer for $time started."
+#attemptattach
 
