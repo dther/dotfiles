@@ -58,6 +58,9 @@ set ruler
 set number
 set laststatus=2
 
+" Line breaking
+set lbr
+
 " add a warning when at 80 characters
 highlight ColorColumn ctermbg=gray
 set colorcolumn=80
