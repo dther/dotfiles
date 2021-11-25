@@ -7,13 +7,14 @@ export VISUAL='vim'
 export EDITOR=$VISUAL
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XDG_CONFIG_HOME="$HOME/.config/"
-export QT_QPA_PLATFORMTHEME="gtk2"
-export QT_STYLE_OVERRIDE="gtk2"
-export GTK_THEME="FlatColor:dark"
 export INPUTRC='~/.inputrc'
 export ELVISBG="dark"
 export CHROME_EXECUTABLE='brave'
 export TASHK_DIR="$HOME/docs/todo/"
+
+export QT_QPA_PLATFORMTHEME="gtk2"
+export QT_STYLE_OVERRIDE="gtk2"
+export GTK_THEME="FlatColor:dark"
 
 # Home clean up.
 # TODO: MOVE THIS TO ANOTHER FILE. IN $XDG_CONFIG_HOME, IDEALLY.

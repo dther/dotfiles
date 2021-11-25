@@ -24,7 +24,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 #export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+#export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
@@ -50,6 +50,16 @@ export NETHACKOPTIONS="@${XDG_CONFIG_HOME:-$HOME/.config}/nethackrc"
 ## MISC ENVIRONMENT VARIABLES ##
 # Java bein broke
 export AWT_TOOLKIT=MToolkit
+
+## eye candy
+# XXX: Requires Flat Color GTK theme. It's on the AUR somewhere.
+export GTK2_RC_FILES="/usr/share/themes/FlatColors/gtk-2.0/gtkrc"
+export GTK_THEME="FlatColor:dark"
+
+# makes Qt look like Gtk2 themes
+# XXX: Requires 'qt5-styleplugins' from the AUR
+export QT_QPA_PLATFORMTHEME="gtk2"
+export QT_STYLE_OVERRIDE="gtk2"
 
 # source bashrc?? I use yash now so i'll need to make changes. TODO
 [ "$SHELL" = "/bin/bash" ] && . ~/.bashrc
