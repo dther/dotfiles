@@ -3,7 +3,7 @@
 # Set environmental variables
 export TERMCMD='st -e '
 export TERMINAL='st'
-export VISUAL='vim'
+export VISUAL='vi'
 export EDITOR=$VISUAL
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XDG_CONFIG_HOME="$HOME/.config/"
@@ -35,20 +35,10 @@ alias info='info --vi-keys'
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 
-
-# suckless thefuck replacement
-alias pls='sudo'
-alias please='pls'
-alias fudge='sudo sh -c "$(fc -ln -1)"'
-alias heck='fudge'
-alias darn='fudge'
-alias crap='fudge'
-alias fuck="echo Y\'know, don\'t say swears."
-
 # rlwrapping
 # Man, how did I go this long without finding this???
 alias tclsh='rlwrap tclsh'
-alias tashk='rlwrap tashk'
+alias tashk='rlwrap -N tashk'
 
 ### Program Specific Aliases ###
 
@@ -79,9 +69,7 @@ alias rm="echo You probably want \'trash\'. && rm -vi"
 pfetch
 tashk ls -p tashkcolor.sh
 echo "---"
-when --prefilter=m4 --future=5
-echo "---"
-prod
+when --prefilter=m4 --future=7
 
 #### From Common Yashrc ####
 
