@@ -62,9 +62,6 @@ alias maybe="tashk -f maybe.txt"
 # imagine using nano
 alias nano="echo How about naNO && sleep 0.5 && vim"
 
-# avoid rm, it's easy to make horrible mistakes
-alias rm="echo You probably want \'trash\'. && rm -vi"
-
 # Run stuff
 pfetch
 tashk ls -p tashkcolor.sh
